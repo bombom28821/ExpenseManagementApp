@@ -6,13 +6,122 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Trip"
+                android:textAlignment="center"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/txtNameTrip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Enter name..."
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <EditText
+                android:id="@+id/txtDescriptionTrip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtNameTrip"
+                android:layout_marginTop="15dp"
+                android:ems="10"
+                android:hint="Enter description..."
+                android:inputType="textPersonName"
+                app:layout_constraintTop_toBottomOf="@+id/txtNameTrip"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <EditText
+                android:id="@+id/txtDestinationTrip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDateToTrip"
+                android:layout_marginTop="15dp"
+                android:ems="10"
+                android:hint="Enter destination..."
+                android:inputType="textPersonName"
+                app:layout_constraintTop_toBottomOf="@+id/txtDateToTrip"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <EditText
+                android:id="@+id/txtDateFromTrip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDescriptionTrip"
+                android:layout_marginTop="15dp"
+                android:ems="10"
+                android:hint="Enter date from..."
+                android:inputType="date"
+                app:layout_constraintTop_toBottomOf="@+id/txtDescriptionTrip"
+                tools:layout_editor_absoluteX="14dp" />
+
+            <EditText
+                android:id="@+id/txtDateToTrip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDateFromTrip"
+                android:layout_marginTop="15dp"
+                android:ems="10"
+                android:hint="Enter date to..."
+                android:inputType="date"
+                app:layout_constraintTop_toBottomOf="@+id/txtDateFromTrip"
+                tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/btnAddTrip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_below="@+id/switchRisk"
+        android:layout_marginTop="36dp"
+        android:text="Add"
+        app:layout_constraintEnd_toStartOf="@+id/btnViewAllTrip"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/switchRisk" />
+
+    <Button
+        android:id="@+id/btnViewAllTrip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/switchRisk"
+        android:layout_marginTop="36dp"
+        android:layout_toEndOf="@+id/btnAddTrip"
+        android:text="View All"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnAddTrip"
+        app:layout_constraintTop_toBottomOf="@+id/switchRisk" />
+
+    <Switch
+        android:id="@+id/switchRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtTypeTrip"
+        android:layout_marginTop="15dp"
+        android:text="Risk"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerTypeTrip"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Spinner
+        android:id="@+id/spinnerTypeTrip"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/txtDestinationTrip"
+        tools:layout_editor_absoluteX="2dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
