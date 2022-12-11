@@ -46,6 +46,7 @@ public class ViewDetailCostActivity extends AppCompatActivity {
 
         inputDetailAmountCost.setText(costModalClass.getAmount().toString());
         inputDetailDateCost.setText(costModalClass.getDate());
+        inputDetailDateCost.setEnabled(false);
         inputDetailDescriptionCost.setText(costModalClass.getDescription());
         spinnerDetailTypeCost.setSelection(costModalClass.getCost_type());
 
@@ -58,6 +59,10 @@ public class ViewDetailCostActivity extends AppCompatActivity {
 
         //Update Detail Cost
         btnUpdateDetailCost.setOnClickListener(view -> {
+            if(inputDetailAmountCost.getText().toString().matches("")){
+                Toast.makeText(this, "Field amount is required!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             CostModalClass cost = new CostModalClass(
                     costId,
                     inputDetailDescriptionCost.getText().toString(),

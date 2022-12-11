@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,10 +45,16 @@ public class ViewCostsActivity extends AppCompatActivity {
 
         //Search costs of this trip by type cost
         EditText searchCosts = findViewById(R.id.txtSearchCosts);
+        TextView txtNotFoundCost = findViewById(R.id.txtNotFoundCost);
         searchCosts.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable searchQuery) {
                 ArrayList<CostModalClass> costs = dbHelper.getCostsByIdTrip(searchQuery.toString().trim(), tripId);
+                if(costs.size() == 0){
+                    txtNotFoundCost.setText("Not found any cost!");
+                }else{
+                    txtNotFoundCost.setText("");
+                }
                 ArrayAdapter<CostModalClass> arrayAdapter
                         = new ArrayAdapter<CostModalClass>(ViewCostsActivity.this,
                         android.R.layout.simple_list_item_1,

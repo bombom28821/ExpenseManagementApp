@@ -48,18 +48,34 @@ public class MainActivity extends AppCompatActivity {
         Button btn_add_trip = findViewById(R.id.btnAddTrip);
         Button btn_view_trip = findViewById(R.id.btnViewAllTrip);
 
+        //Add Trip
         btn_add_trip.setOnClickListener(view -> {
-           DatabaseHelper dbHelper = new DatabaseHelper(this);
-           TripModalClass trip = new TripModalClass(
-                   description.getText().toString(),
-                   name.getText().toString(),
-                   date_from.getText().toString(),
-                   date_to.getText().toString(),
-                   destination.getText().toString(),
-                   is_risk.isChecked(),
-                   Integer.parseInt(String.valueOf(trip_type.getSelectedItemId()))
-           );
-
+           if(name.getText().toString().matches("")){
+               Toast.makeText(this, "Field name is required!", Toast.LENGTH_SHORT).show();
+               return;
+           }
+            if(date_from.getText().toString().matches("")){
+                Toast.makeText(this, "Field date from is required!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(date_to.getText().toString().matches("")){
+                Toast.makeText(this, "Field date to is required!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(destination.getText().toString().matches("")){
+                Toast.makeText(this, "Field destination is required!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            DatabaseHelper dbHelper = new DatabaseHelper(this);
+            TripModalClass trip = new TripModalClass(
+                    description.getText().toString(),
+                    name.getText().toString(),
+                    date_from.getText().toString(),
+                    date_to.getText().toString(),
+                    destination.getText().toString(),
+                    is_risk.isChecked(),
+                    Integer.parseInt(String.valueOf(trip_type.getSelectedItemId()))
+            );
            dbHelper.insertTrip(trip);
            description.setText("");
            name.setText("");

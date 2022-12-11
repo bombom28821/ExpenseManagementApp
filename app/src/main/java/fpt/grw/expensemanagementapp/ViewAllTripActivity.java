@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -41,10 +42,16 @@ public class ViewAllTripActivity extends AppCompatActivity {
         });
         //Search
         EditText searchTrip = findViewById(R.id.txtSearchTrip);
+        TextView txtNotFound = findViewById(R.id.txtNotFound);
         searchTrip.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable searchQuery) {
                 List<TripModalClass> trips = dbHelper.getTrips(searchQuery.toString().trim());
+                if(trips.size() == 0){
+                    txtNotFound.setText("Not Found any trip!");
+                }else{
+                    txtNotFound.setText("");
+                }
                 ArrayAdapter<TripModalClass> arrayAdapter
                         = new ArrayAdapter<TripModalClass>(
                                 ViewAllTripActivity.this,

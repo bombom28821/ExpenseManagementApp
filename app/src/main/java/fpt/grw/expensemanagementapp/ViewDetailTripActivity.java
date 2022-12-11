@@ -60,6 +60,22 @@ public class ViewDetailTripActivity extends AppCompatActivity {
         });
 
         btnUpdateDetailTrip.setOnClickListener(view -> {
+            if(name.getText().toString().matches("")){
+                Toast.makeText(this, "Field name is required!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(date_from.getText().toString().matches("")){
+                Toast.makeText(this, "Field date from is required!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(date_to.getText().toString().matches("")){
+                Toast.makeText(this, "Field date to is required!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(destination.getText().toString().matches("")){
+                Toast.makeText(this, "Field destination is required!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             TripModalClass tripUpdate = new TripModalClass(
                     tripId,
                     description.getText().toString(),

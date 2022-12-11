@@ -10,6 +10,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class AddCostActivity extends AppCompatActivity {
     private static final String[] costTypes = {
             "Costs incurred",
@@ -28,6 +33,9 @@ public class AddCostActivity extends AppCompatActivity {
         EditText amount = findViewById(R.id.inputDetailAmountCost);
         EditText description = findViewById(R.id.inputDetailDescriptionCost);
         EditText date = findViewById(R.id.inputDetailDateCost);
+        String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+        date.setText(currentDate);
+        date.setEnabled(false);
 
         Button btnAddCost = findViewById(R.id.btnUpdateDetailCost);
         Button btnCancel = findViewById(R.id.btnDeleteDetailCost);
@@ -48,6 +56,11 @@ public class AddCostActivity extends AppCompatActivity {
 
         //Add cost
         btnAddCost.setOnClickListener(view -> {
+            if(amount.getText().toString().matches("")){
+                Toast.makeText(this, "Field amount is required!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             DatabaseHelper dbHelper = new DatabaseHelper(this);
             CostModalClass costModalClass = new CostModalClass(
                     description.getText().toString(),
@@ -56,10 +69,10 @@ public class AddCostActivity extends AppCompatActivity {
                     date.getText().toString(),
                     tripId
             );
+
             dbHelper.insertCost(costModalClass);
             amount.setText("");
             description.setText("");
-            date.setText("");
             spinner.setSelection(0);
             Toast.makeText(AddCostActivity.this,"Add cost for trip by id: " + tripId, Toast.LENGTH_SHORT).show();
 
